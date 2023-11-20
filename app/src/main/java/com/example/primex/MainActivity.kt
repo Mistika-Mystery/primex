@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity() {
 
     private var wins = 0
     private var loses = 0
-    private var allExamples = 0
+    private var allExamples = 0.0
     private var percentage = 0.0
     private var choice = true
 
@@ -50,10 +50,10 @@ class MainActivity : AppCompatActivity() {
             bindingClass.resultTxt.setBackgroundColor(Color.RED)
 
         }
-        percentage = (wins/allExamples*100).toDouble()
+        percentage = ((wins/allExamples)*100).toDouble()
         bindingClass.rigthtxt.text = wins.toString()
         bindingClass.losetxt.text = loses.toString()
-        bindingClass.allextxt.text = allExamples.toString()
+        bindingClass.allextxt.text =  ("%.0f".format(allExamples)).toString()
         bindingClass.percentrigthtxt.text = ("%.2f".format(percentage)).toString()  + "%"
         bindingClass.loseBtn.isEnabled = false
         bindingClass.rightBtn.isEnabled = false
@@ -115,10 +115,10 @@ class MainActivity : AppCompatActivity() {
             allExamples++
             bindingClass.resultTxt.setBackgroundColor(Color.RED)
         }
-        percentage = (wins/allExamples*100).toDouble()
+        percentage = ((wins/allExamples)*100).toDouble()
         bindingClass.rigthtxt.text = wins.toString()
         bindingClass.losetxt.text = loses.toString()
-        bindingClass.allextxt.text = allExamples.toString()
+        bindingClass.allextxt.text = ("%.0f".format(allExamples)).toString()
         bindingClass.percentrigthtxt.text = ("%.2f".format(percentage)).toString()  + "%"
         bindingClass.loseBtn.isEnabled = false
         bindingClass.rightBtn.isEnabled = false
@@ -140,7 +140,7 @@ class MainActivity : AppCompatActivity() {
             bindingClass.maxtxt.text = time.toString()
         }
         avgSec = allTime / allExamples
-        bindingClass.avgtxt.text = avgSec.toString()
+        bindingClass.avgtxt.text = ("%.2f".format(avgSec)).toString()
         time = 0.0
         bindingClass.timextx.text = getTimeStringFromDouble(time)
     }
