@@ -89,7 +89,7 @@ class MainActivity : AppCompatActivity() {
         else
         {
             choice = false
-            result = (-100..100).random()
+            result = (-1000..1000).random()
         }
         bindingClass.oper1txt.text = oneOperant.toString()
         bindingClass.oper2txt.text= twoOperator.toString()
