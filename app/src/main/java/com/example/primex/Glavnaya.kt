@@ -15,7 +15,10 @@ class Glavnaya : AppCompatActivity() {
         val primerIntent = Intent (this, MainActivity::class.java)
 startActivity(primerIntent)
     }
-
+    public fun KmnbysBTNClick(view: View) {
+        val KmnbysIntent = Intent (this, MainActivity2::class.java)
+        startActivity(KmnbysIntent)
+    }
 
 
 
