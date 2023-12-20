@@ -19,7 +19,10 @@ startActivity(primerIntent)
         val KmnbysIntent = Intent (this, MainActivity2::class.java)
         startActivity(KmnbysIntent)
     }
-
+    public fun ArifmetBTNClick(view: View) {
+        val ArifmetIntent = Intent (this, MainActivity4::class.java)
+        startActivity(ArifmetIntent)
+    }
 
 
 }

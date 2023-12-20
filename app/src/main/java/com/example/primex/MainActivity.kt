@@ -12,7 +12,7 @@ import com.example.primex.databinding.ActivityMainBinding
 import kotlin.math.roundToInt
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var bindingClass: ActivityMainBinding
+   private lateinit var bindingClass: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         bindingClass = ActivityMainBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
