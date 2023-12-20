@@ -11,7 +11,6 @@ class MainActivity4 : AppCompatActivity() {
     private lateinit var binding: ActivityMain4Binding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main4)
         binding = ActivityMain4Binding.inflate(layoutInflater)
         setContentView(binding.root)
     }
