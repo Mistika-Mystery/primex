@@ -23,6 +23,8 @@ startActivity(primerIntent)
         val ArifmetIntent = Intent (this, MainActivity4::class.java)
         startActivity(ArifmetIntent)
     }
-
-
+    public fun ZagadkiBTNClick(view: View) {
+        val ZagadkiIntent = Intent (this, Second::class.java)
+        startActivity(ZagadkiIntent)
+    }
 }
