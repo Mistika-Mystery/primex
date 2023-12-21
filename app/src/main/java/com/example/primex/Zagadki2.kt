@@ -23,7 +23,7 @@ class Zagadki2 : AppCompatActivity() {
             intent.getStringExtra("answerCorrect")
         ).shuffled()
 
-        //binding.textViewQuestion.text = intent.getStringExtra("question")
+
         binding.radioButton.text = Answers[0]
         binding.radioButton2.text = Answers[1]
         binding.radioButton3.text = Answers[2]

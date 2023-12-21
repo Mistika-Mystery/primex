@@ -6,20 +6,22 @@
     android:layout_height="match_parent"
     tools:context=".Zagadki">
 
+
+
     <TextView
         android:id="@+id/textQuest"
-        android:layout_width="358dp"
-        android:layout_height="150dp"
-        android:text="Для начала игры нажмите кнопку &quot;Загадка&quot;."
+        android:layout_width="350dp"
+        android:layout_height="185dp"
+        android:text="Нажмите кнопку &quot;Загадка&quot;."
         android:textAlignment="center"
         android:textColor="@color/black"
-        android:textSize="24sp"
+        android:textSize="28sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.49"
+        app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.176" />
+        app:layout_constraintVertical_bias="0.161" />
 
     <Button
         android:id="@+id/buttonAnswer"

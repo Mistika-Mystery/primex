@@ -19,7 +19,7 @@ class Zagadki : AppCompatActivity() {
         ),
         ZagadkiList(
             "В углу сито, не руками вито.",
-            setOf<String>("Паутина", "Корзина", "Чайник", "Дом", "Колокол", "Небо", "Колокол", "Небо")
+            setOf<String>("Паутина", "Корзина", "Чайник", "Дом", "Колокол", "Небо")
         ),
         ZagadkiList("Кто над нами вверх ногами?", setOf<String>("Муха", "Дом", "Лиса", "Краб", "Колокол", "Небо")),
         ZagadkiList(
@@ -58,7 +58,7 @@ class Zagadki : AppCompatActivity() {
             "По сеням взад-вперёд ходит, а в избу не входит.",
             setOf<String>("Дверь", "Дом", "Окно", "Труба", "Колокол", "Небо")
         ),
-        ZagadkiList("Какие животные хвойные?", setOf<String>("Ежи", "Лисы", "Змеи", "Медведи")),
+        ZagadkiList("Какие животные хвойные?", setOf<String>("Ежи", "Лисы", "Змеи", "Медведи", "Окно", "Труба")),
         ZagadkiList(
             "Шарик невелик, да плакать велит.",
             setOf<String>("Лук", "Морковь", "Чеснок", "Миг", "Колокол", "Небо")
@@ -124,7 +124,6 @@ class Zagadki : AppCompatActivity() {
     var gameInProgress = false;
     var answeredTotal = 0;
     var answeredCorrect = 0;
-    var correctAnswer = 0;
     var questionAnswered = 0;
 
 
@@ -140,27 +139,27 @@ class Zagadki : AppCompatActivity() {
             registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
                 if (result.resultCode == RESULT_OK) {
                     val answer = result.data?.getStringExtra("chosenAnswer")
-                    var corr = "Неправильный ответ"
-                    binding.textUserAnswer.setVisibility(View.VISIBLE);
-                    binding.textAnswerCorrectness.setVisibility(View.VISIBLE);
+                    var corr = "Не правильно"
+                    binding.textUserAnswer.visibility = View.VISIBLE;
+                    binding.textAnswerCorrectness.visibility = View.VISIBLE;
                     binding.textAnswerCorrectness.setTextColor(Color.RED)
-                    if (answer == GameList.get(questionAnswered).answers.elementAtOrNull(0)
-                            .toString()
+                    if (answer == GameList[questionAnswered].answers.elementAtOrNull(0).toString()
                     ) {
-                        corr = "Правильный ответ";
+                        corr = "Правильно";
                         binding.textAnswerCorrectness.setTextColor(Color.GREEN)
                         answeredCorrect++;
                     }
-                    val qText = GameList.get(questionAnswered).riddleText;
+                    val qText = GameList[questionAnswered].riddleText;
                     questionAnswered++;
                     if (questionAnswered == 10) {
+                        binding.buttonQuestion.isEnabled = false;
                         binding.buttonInfo.isEnabled = true;
                         gameInProgress = false;
                         answeredTotal += questionAnswered;
                         questionAnswered = 0;
-                        binding.buttonQuestion.text = "Начать";
+                        binding.buttonQuestion.isEnabled = false;
                     }
-                    binding.buttonQuestion.isEnabled = true;
+                    else{ binding.buttonQuestion.isEnabled = true;}
                     binding.buttonAnswer.isEnabled = false;
                     binding.textQuest.text = qText;
                     binding.textUserAnswer.text = "Ваш ответ: " + answer;
@@ -175,7 +174,6 @@ class Zagadki : AppCompatActivity() {
     )
     fun btnClickAnswer(view: View) {
         val intent = Intent(this, Zagadki2::class.java);
-        //intent.putExtra("question", GameList[questionAnswered].riddleText);
         intent.putExtra(
             "answerCorrect",
             GameList[questionAnswered].answers.elementAtOrNull(0)
@@ -195,7 +193,7 @@ class Zagadki : AppCompatActivity() {
         intent.putExtra(
             "answer4",
             GameList[questionAnswered].answers.elementAtOrNull(4)
-        );
+        )
         intent.putExtra(
             "answer5",
             GameList[questionAnswered].answers.elementAtOrNull(5)
@@ -214,19 +212,21 @@ class Zagadki : AppCompatActivity() {
     fun btnClickNext(view: View) {
         binding.textUserAnswer.visibility = View.GONE;
         binding.textAnswerCorrectness.visibility = View.GONE;
+        binding.buttonQuestion.isEnabled = false;
         if (gameInProgress) {
             binding.textQuest.text = GameList[questionAnswered].riddleText
-            binding.textView.text = "Вопрос " + (questionAnswered + 1)
+            binding.textView.text = "Вопрос № " + (questionAnswered + 1)
             binding.buttonAnswer.isEnabled = true
             binding.buttonQuestion.isEnabled = false
             binding.buttonQuestion.text = "Загадка"
+
         } else {
             GameList = (ZagadkiSpisok.shuffled()).take(10)
             binding.textQuest.text = GameList[questionAnswered].riddleText
             binding.buttonAnswer.isEnabled = true
             binding.buttonInfo.isEnabled = false
             gameInProgress = true
-            binding.textView.text = "Вопрос 1"
+            binding.textView.text = "Вопрос № 1"
             questionAnswered = 0
             answeredCorrect = 0
         }
